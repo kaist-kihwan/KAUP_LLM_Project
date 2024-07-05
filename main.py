@@ -4,9 +4,6 @@ sys.dont_write_bytecode = True
 import tkinter as tk
 from tkinter import scrolledtext
 
-import os
-from dotenv import load_dotenv
-
 from llm import Robot
 
 
@@ -50,9 +47,7 @@ if __name__ == "__main__":
     root.protocol("WM_DELETE_WINDOW", on_quit)
 
     # Create Solar LLM object
-    load_dotenv()
-    API_KEY = os.getenv('SECRET_KEY')
-    robot = Robot(API_KEY)
+    robot = Robot()
 
     ################################################ Chatbot #####################################################
 
