@@ -8,6 +8,10 @@ from tkinter import scrolledtext
 from llm import Robot
 
 
+CUR_CARD_NUM = 1
+MAX_CARD_NUM = 2
+
+
 def _print_message(pronoun:str, message:str) -> bool:
 
     chat_window.config(state=tk.NORMAL)
@@ -17,6 +21,7 @@ def _print_message(pronoun:str, message:str) -> bool:
 
 
 def send_user_message():
+    global CUR_CARD_NUM
     message = entry.get()
     if message:
         
@@ -27,10 +32,35 @@ def send_user_message():
         
         _print_message("Robot", ans)
 
-        _print_message("System", "==========================================")
-        _print_message("Robot", "What does it look like?")
+        if CUR_CARD_NUM < MAX_CARD_NUM:
+            CUR_CARD_NUM += 1
+            
+            show_image()
 
+            _print_message("System", "==========================================")
+            _print_message("Robot", "What does it look like?")
+        
+        else:
 
+            entry.config(state=tk.DISABLED)
+            send_button.config(state=tk.DISABLED)
+
+            result_window = tk.Toplevel(root)
+            result_window.title("Result Window")
+            
+            label1 = tk.Label(result_window, text="S-Constellation")
+            label1.pack(pady=10)
+            label2 = tk.Label(result_window, text="DEPI")
+            label2.pack(pady=10)
+            label3 = tk.Label(result_window, text="PTI")
+            label3.pack(pady=10)
+            label4 = tk.Label(result_window, text="CDI")
+            label4.pack(pady=10)
+            label5 = tk.Label(result_window, text="HVI")
+            label5.pack(pady=10)
+            label6 = tk.Label(result_window, text="OBS")
+            label6.pack(pady=10)
+        
 
 
 def start_test():
@@ -56,15 +86,15 @@ def on_quit():
     root.destroy()
 
 
+def show_image():
+    image_label.config(image=scaled_image2)
 
-CUR_CARD_NUM = 1
-MAX_CARD_NUM = 1
 
 if __name__ == "__main__":
 
     # Set up the main application window
     root = tk.Tk()
-    root.title("NEED NAME")
+    root.title("Happy Moments")
 
     # Bind the window close event to the custom function
     root.protocol("WM_DELETE_WINDOW", on_quit)
@@ -107,15 +137,14 @@ if __name__ == "__main__":
 
     chatbot_frame = tk.Frame(root)
 
+    original_image1 = tk.PhotoImage(file="image/Card_1.png")
+    scaled_image1 = original_image1.subsample(3, 3)
+    original_image2 = tk.PhotoImage(file="image/Card_2.png")
+    scaled_image2 = original_image2.subsample(3, 3)
 
-    image_path = "image/Card_1.png"  # Ensure this is a path to a GIF or PPM/PGM image
-    original_image = tk.PhotoImage(file=image_path)
-
-    # Create a label widget to display the image
-    scaled_image = original_image.subsample(3, 3)
-    image_label = tk.Label(chatbot_frame, image=scaled_image)
+    image_label = tk.Label(chatbot_frame, image=scaled_image1)
     image_label.pack(padx=10, pady=10)
-
+    
     # Create a scrolled text widget for the chat window
     chat_window = scrolledtext.ScrolledText(chatbot_frame, wrap=tk.WORD, state=tk.DISABLED)
     chat_window.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)

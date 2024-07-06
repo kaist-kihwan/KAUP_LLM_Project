@@ -158,7 +158,7 @@ Category: Human Experience
 * Criterion: Hx is scored as a primary content for percepts involving the human emotion or sensory experience such as love, hate, depression, happiness, sound, smell, fear, etc. These answers will also include the use of AB as a special score. Hx also is often scored as a secondary content in answers that are not abstract but clearly involve the attribution of a human emotion or sensory experience.
 Category: Whole Animal
 * Symbol: A
-* Criterion: Involving the percept of a whole animal form.
+* Criterion: Involving the percept of a whole animal form, such as butterfly, bat, insect.
 Category: Whole Animal, Fictional or Mythological
 * Symbol: (A)
 * Criterion: Involving the percept of a whole animal that is fictional or mythological, such as a unicorn, dragon, magic frog, flying horse, Black Beauty, Jonathan Livingston Seagull.
